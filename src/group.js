@@ -9,7 +9,7 @@ const GroupFile = require("./group-file");
 
 class Group {
 	constructor(filePath) {
-		let _properties = { };
+		const _properties = { };
 
 		Object.defineProperty(this, "filePath", {
 			enumerable: true,
@@ -177,7 +177,7 @@ class Group {
 			return [];
 		}
 
-		let filesWithExtension = [];
+		const filesWithExtension = [];
 
 		for(let i = 0; i < this.files.length; i++) {
 			const currentFile = this.files[i];
@@ -209,7 +209,7 @@ class Group {
 			return [];
 		}
 
-		let fileExtensions = { };
+		const fileExtensions = { };
 
 		for(let i = 0; i < this.files.length; i++) {
 			const currentFile = this.files[i];
@@ -251,7 +251,7 @@ class Group {
 			return [];
 		}
 
-		let extractedFilePaths = [];
+		const extractedFilePaths = [];
 
 		for(let i = 0; i < filesWithExtension.length; i++) {
 			let fileStats = null;
@@ -276,7 +276,7 @@ class Group {
 			throw new Error("Cannot extract all files from invalid group.");
 		}
 
-		let extractedFilePaths = [];
+		const extractedFilePaths = [];
 
 		for(let i = 0; i < this.files.length; i++) {
 			let fileStats = null;
@@ -328,7 +328,7 @@ class Group {
 			return [];
 		}
 
-		let filesAdded = [];
+		const filesAdded = [];
 
 		for(let i = 0; i < files.length; i++) {
 			filesAdded.push(this.addFile(files[i], replace));
@@ -345,7 +345,7 @@ class Group {
 		}
 
 		const directoryContents = fs.readdirSync(directory);
-		let filesAdded = [];
+		const filesAdded = [];
 
 		for(let i = 0; i < directoryContents.length; i++) {
 			const filePath = path.join(directory, directoryContents[i]);
@@ -367,7 +367,7 @@ class Group {
 	}
 
 	renameFile(file, newFileName) {
-		let groupFile = this.getFile(file);
+		const groupFile = this.getFile(file);
 
 		if(!Group.File.isValid(groupFile)) {
 			return false;
@@ -428,10 +428,10 @@ class Group {
 			return 0;
 		}
 
-		let fileIndexes = [];
+		const fileIndexes = [];
 
 		for(let i = 0; i < files.length; i++) {
-			let file = files[i];
+			const file = files[i];
 			let fileIndex = -1;
 
 			if(Number.isInteger(file)) {
@@ -459,7 +459,7 @@ class Group {
 			}
 		}
 
-		let newFiles = [];
+		const newFiles = [];
 
 		for(let i = 0; i < this.files.length; i++) {
 			let keepFile = true;
@@ -490,7 +490,7 @@ class Group {
 	}
 
 	static createFrom(directory, recursive) {
-		let group = new Group();
+		const group = new Group();
 		group.addDirectory(directory, recursive);
 		return group;
 	}
@@ -508,7 +508,7 @@ class Group {
 
 		const groupData = fs.readFileSync(filePath);
 
-		let groupByteBuffer = new ByteBuffer();
+		const groupByteBuffer = new ByteBuffer();
 		groupByteBuffer.order(true);
 		groupByteBuffer.append(groupData, "binary");
 		const groupSize = groupByteBuffer.offset;
@@ -541,7 +541,7 @@ class Group {
 
 		const fileDataOffset = offset + (numberOfFiles * (Group.File.MAX_FILE_NAME_LENGTH + 4));
 		let fileOffset = fileDataOffset;
-		let files = [];
+		const files = [];
 
 		for(let i = 0; i < numberOfFiles; i++) {
 			if(groupSize < offset + Group.File.MAX_FILE_NAME_LENGTH) {
@@ -576,7 +576,7 @@ class Group {
 		fileOffset = fileDataOffset;
 
 		for(let i = 0; i < files.length; i++) {
-			let file = files[i];
+			const file = files[i];
 
 			const fileData = groupByteBuffer.copy(fileOffset, fileOffset + file.size).toBuffer();
 
@@ -585,7 +585,7 @@ class Group {
 			file.data = fileData;
 		}
 
-		let group = new Group(filePath);
+		const group = new Group(filePath);
 		group.files = files;
 
 		return group;
@@ -596,7 +596,7 @@ class Group {
 			throw new Error("Cannot save invalid group.");
 		}
 
-		let groupByteBuffer = new ByteBuffer(this.getGroupSize());
+		const groupByteBuffer = new ByteBuffer(this.getGroupSize());
 		groupByteBuffer.order(true);
 
 		groupByteBuffer.writeString(Group.HEADER_TEXT);

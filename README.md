@@ -11,20 +11,20 @@ A module for reading Duke Nukem 3D group files.
 ## Usage
 
 ```javascript
-var Group = require("duke3d-group");
+const Group = require("duke3d-group");
 
 // creating and writing a group to a file:
-var group = new Group("TEST.GRP");
+const group = new Group("TEST.GRP");
 group.addFile(new Group.File("GAME.CON", Buffer.from("define MAXPLAYERHEALTH 420")));
 group.addDirectory("C:\\TCs\Awesome_TC\\");
 group.writeTo("C:\\TCs\\AWESOME.GRP");
 
 // reading, interacting and extracting files with / from a group:
-var group = Group.readFrom("C:\\TCs\EPICNUKE.GRP");
-console.log("Number of Files: " + group.numberOfFiles());
-group.extractAllFiles("C:\\TCs\\EpicNukem\\");
-var conFiles = group.getFilesWithExtension("CON");
-for(var i = 0; i < conFiles.length; i++) {
+const epicNukeGroup = Group.readFrom("C:\\TCs\EPICNUKE.GRP");
+console.log("Number of Files: " + epicNukeGroup.numberOfFiles());
+epicNukeGroup.extractAllFiles("C:\\TCs\\EpicNukem\\");
+const conFiles = epicNukeGroup.getFilesWithExtension("CON");
+for(let i = 0; i < conFiles.length; i++) {
     console.log(conFiles[i].name);
 }
 ```

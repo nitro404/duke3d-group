@@ -1,10 +1,9 @@
-var fabricator = require("gulp-fabricator");
+const fabricator = require("gulp-fabricator");
 
 fabricator.setup({
 	name: "Duke3d Group",
 	build: {
-		enabled: false,
-		transformation: "None"
+		enabled: false
 	},
 	test: {
 		target: ["src/*.js"]

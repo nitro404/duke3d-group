@@ -7,7 +7,7 @@ const ByteBuffer = require("bytebuffer");
 
 class GroupFile {
 	constructor(name, data) {
-		let _properties = { };
+		const _properties = { };
 
 		Object.defineProperty(this, "name", {
 			enumerable: true,
