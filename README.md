@@ -6,7 +6,7 @@
 [![Known Vulnerabilities][vulnerabilities-image]][vulnerabilities-url]
 [![Downloads][npm-downloads-image]][npm-url]
 
-A module for reading Duke Nukem 3D group files.
+A module for reading and writing Duke Nukem 3D group files.
 
 ## Usage
 
@@ -16,7 +16,7 @@ const Group = require("duke3d-group");
 // creating and writing a group to a file:
 const group = new Group("TEST.GRP");
 group.addFile(new Group.File("GAME.CON", Buffer.from("define MAXPLAYERHEALTH 420")));
-group.addDirectory("C:\\TCs\Awesome_TC\\");
+group.addDirectory("C:\\TCs\\Awesome_TC\\");
 group.writeTo("C:\\TCs\\AWESOME.GRP");
 
 // reading, interacting and extracting files with / from a group:
