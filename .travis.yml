@@ -13,7 +13,7 @@ node_js:
 
 before_install:
   - npm cache clean --force
-  - npm install -g mocha coveralls
+  - npm install -g mocha nyc coveralls
 
 after_success:
   - npm run coveralls
